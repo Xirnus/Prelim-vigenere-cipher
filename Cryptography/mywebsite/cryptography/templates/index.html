@@ -8,11 +8,19 @@
     <link rel="stylesheet" href="">
     {% tailwind_css %}
 </head>
-<body>
+<body class="dark:bg-gray-900 antialiased">
+
+    <header>
+        <div>
+            <h1 class="m-10 flex items-center text-5xl font-extrabold dark:text-white">Vigenere<span class="bg-blue-100 text-blue-800 text-2xl font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-2">Cipher</span></h1>
+            
+        </div>
+    </header>
     <div class="flex flex-row mx-auto px-4 flex-nowrap justify-between bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% font-sans text-xl">
         <div class="border-x-4 rounded h-20 w-96 text-center py-5">
             <h1>Plaintext</h1>
-            <input type="text" class="w-80">
+            <textarea id="message" rows="4" class="mt-11 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+            
         </div>
         <div class="border-x-4 rounded h-20 w-96 text-center py-5">
             <h1>Encode | Decode 2</h1>

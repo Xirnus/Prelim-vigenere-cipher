@@ -2,7 +2,7 @@ current installed frameworks
 
 Django 
 Tailwind
-
+node.js
 
 
 MUST BE IN 2 SEPERATE TERMINALS
