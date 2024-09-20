@@ -1,0 +1,15 @@
+current installed frameworks 
+
+Django 
+Tailwind
+
+
+
+MUST BE IN 2 SEPERATE TERMINALS
+to start tailwind
+python manage.py tailwind start
+
+to start Django server
+python manage.py runserver
+
+https://django-tailwind.readthedocs.io/en/latest/installation.html

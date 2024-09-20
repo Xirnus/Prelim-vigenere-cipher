@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static tailwind_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyper</title>
+    <link rel="stylesheet" href="">
+    {% tailwind_css %}
+</head>
+<body>
+    <div class="flex flex-row mx-auto px-4 flex-nowrap justify-between bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% font-sans text-xl">
+        <div class="border-x-4 rounded h-20 w-96 text-center py-5">
+            <h1>Plaintext</h1>
+            <input type="text" class="w-80">
+        </div>
+        <div class="border-x-4 rounded h-20 w-96 text-center py-5">
+            <h1>Encode | Decode 2</h1>
+        </div>
+        <div class="border-x-4 rounded h-20 w-96 text-center py-5">
+            <h1>Ciphertext 3</h1>
+        </div>
+    </div>
+</body>
+</html>
