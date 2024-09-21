@@ -1,3 +1,31 @@
+<!-- 
+
+This HTML file is a template for a Vigenere Cipher web application. It includes the following key sections:
+
+1. **Head Section**:
+    - Loads static files and Tailwind CSS.
+    - Includes meta tags for character set and viewport settings.
+    - Links to external stylesheets and scripts.
+    - Defines custom styles for active buttons.
+
+2. **Body Section**:
+    - **Header**: Displays the title "Vigenere Cipher".
+    - **Main Content**:
+        - Contains buttons to switch between encoding and decoding modes.
+        - Contains text areas for plaintext, key, and ciphertext input.
+    - **Footer**: Displays developer credits.
+
+3. **JavaScript Section**:
+    - Defines functions to handle button activation and textarea swapping.
+    - Adds event listeners for button clicks and input changes.
+    - Implements AJAX requests to encrypt and decrypt messages using the Vigenere Cipher.
+
+Dependencies:
+- jQuery 3.6.0
+- Tailwind CSS
+-->
+
+
 <!DOCTYPE html>
 {% load static tailwind_tags %}
 <html lang="en">
@@ -9,14 +37,15 @@
     {% tailwind_css %}
     <style>
         .active {
-            background-color: #1D4ED8; /* Tailwind's blue-700 */
+            background-color: #1D4ED8; 
             color: white;
         }
         .active:hover {
-            background-color: #1E40AF; /* Tailwind's blue-800 */
+            background-color: #1E40AF; 
             color: white;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="dark:bg-gray-900 antialiased">
     <header class="bg-zinc-800 py-7">
@@ -32,7 +61,7 @@
 
     <div class="flex flex-col justify-center items-center space-y-8 mt-44">
         <div class="inline-flex rounded-md shadow-sm mt-auto" role="group">
-            <button id="encodeButton" type="button" class="switch-button px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+            <button id="encodeButton" type="button" class="switch-button active px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
                 Encode
             </button>
             <button id="decodeButton" type="button" class="switch-button px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
@@ -48,9 +77,8 @@
             </div>
             <div id="keytextContainer" class="max-w-[26rem] whitespace-normal break-words rounded-lg border border-blue-gray-50 bg-slate-100 p-4 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
                 <h1 class="text-2xl font-bold text-blue-gray-900">Key</h1>
-                <textarea id="plaintext" rows="6" cols="30" class="mt-8 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 fixed-height resize-none" placeholder="Input your key here..."></textarea>
+                <textarea id="key" rows="6" cols="30" class="mt-8 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 fixed-height resize-none" placeholder="Input your key here..."></textarea>
             </div>
-
             <div id="ciphertextContainer" class="max-w-[26rem] whitespace-normal break-words rounded-lg border border-blue-gray-50 bg-slate-100 p-4 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
                 <h1 class="text-2xl font-bold text-blue-gray-900">Ciphertext</h1>
                 <textarea id="ciphertext" rows="6" cols="80" class="mt-8 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 fixed-height resize-none" placeholder="Input your ciphertext here..."></textarea>
@@ -60,7 +88,7 @@
 
     <footer class="bg-zinc-800 py-4 mt-72">
         <div class="container mx-auto text-center text-white">
-            <p>&copy; Developed by: James Edward L. Verceles & Joseph Richard Dela Cruz</p>
+            <p>&copy; Developed by: James Edward L. Verceles & Joseph Richard Dela Cruz 2024</p>
         </div>
     </footer>
 </body>
@@ -76,11 +104,18 @@
         const textareaContainer = document.getElementById('textareaContainer');
         const plaintextContainer = document.getElementById('plaintextContainer');
         const ciphertextContainer = document.getElementById('ciphertextContainer');
+        const keytextContainer = document.getElementById('keytextContainer');
 
         if (buttonId === 'decodeButton') {
-            textareaContainer.insertBefore(ciphertextContainer, plaintextContainer);
+            textareaContainer.innerHTML = ''; // Clear the container
+            textareaContainer.appendChild(ciphertextContainer);
+            textareaContainer.appendChild(keytextContainer);
+            textareaContainer.appendChild(plaintextContainer);
         } else {
-            textareaContainer.insertBefore(plaintextContainer, ciphertextContainer);
+            textareaContainer.innerHTML = ''; // Clear the container
+            textareaContainer.appendChild(plaintextContainer);
+            textareaContainer.appendChild(keytextContainer);
+            textareaContainer.appendChild(ciphertextContainer);
         }
     }
 
@@ -95,7 +130,90 @@
 
     // On page load, remove the active class from both buttons
     document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('encodeButton').classList.remove('active');
         document.getElementById('decodeButton').classList.remove('active');
+    });
+
+    $(document).ready(function() {
+        console.log('Document is ready');
+
+        function encrypt() {
+            var plaintext = $('#plaintext').val();
+            var key = $('#key').val();
+            console.log('Encrypt function called with plaintext:', plaintext, 'and key:', key);
+            if (plaintext && key) {
+                $.ajax({
+                    url: '/encrypt/',
+                    data: {
+                        'msg': plaintext,
+                        'key': key
+                    },
+                    success: function(data) {
+                        console.log('Encryption successful:', data);
+                        $('#ciphertext').val(data.encrypted_msg);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Encryption error:', status, error);
+                    }
+                });
+            } else {
+                $('#ciphertext').val('');
+            }
+        }
+
+        function decrypt() {
+            var ciphertext = $('#ciphertext').val();
+            var key = $('#key').val();
+            console.log('Decrypt function called with ciphertext:', ciphertext, 'and key:', key);
+            if (ciphertext && key) {
+                $.ajax({
+                    url: '/decrypt/',
+                    data: {
+                        'msg': ciphertext,
+                        'key': key
+                    },
+                    success: function(data) {
+                        console.log('Decryption successful:', data);
+                        $('#plaintext').val(data.decrypted_msg);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Decryption error:', status, error);
+                    }
+                });
+            } else {
+                $('#plaintext').val('');
+            }
+        }
+
+        $('#plaintext, #key').on('input', function() {
+            console.log('Input event triggered on plaintext or key');
+            if ($('#plaintext').val() === '' || $('#key').val() === '') {
+                $('#ciphertext').val('');
+            } else {
+                encrypt();
+            }
+        });
+
+        $('#ciphertext').on('input', function() {
+            console.log('Input event triggered on ciphertext');
+            if ($('#ciphertext').val() === '' || $('#key').val() === '') {
+                $('#plaintext').val('');
+            } else {
+                decrypt();
+            }
+        });
+
+        $('#key').on('input', function() {
+            if ($('#plaintext').val() === '' && $('#ciphertext').val() === '') {
+                console.log('Key input event triggered with no plaintext or ciphertext present');
+                $('#plaintext').val('');
+                $('#ciphertext').val('');
+            } else if ($('#plaintext').val()) {
+                console.log('Key input event triggered with plaintext present');
+                encrypt();
+            } else if ($('#ciphertext').val()) {
+                console.log('Key input event triggered with ciphertext present');
+                decrypt();
+            }
+        });
     });
 </script>

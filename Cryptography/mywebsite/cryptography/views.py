@@ -44,18 +44,14 @@ def decrypt_vigenere(msg, key):
 def index(request):
     return render(request, 'index.html')
 
-def process(request):
-    if request.method == 'POST':
-        input_text = request.POST.get('input_text', '')
-        key = request.POST.get('key', '')
-        action = request.POST.get('action', '')
+def encrypt(request):
+    msg = request.GET.get('msg', '')
+    key = request.GET.get('key', '')
+    encrypted_msg = encrypt_vigenere(msg, key)
+    return JsonResponse({'encrypted_msg': encrypted_msg})
 
-        if action == 'encode':
-            output_text = encrypt_vigenere(input_text, key)
-        elif action == 'decode':
-            output_text = decrypt_vigenere(input_text, key)
-        else:
-            return JsonResponse({'error': 'Invalid action'}, status=400)
-
-        return JsonResponse({'output_text': output_text})
-    return JsonResponse({'error': 'Invalid request'}, status=400)
+def decrypt(request):
+    msg = request.GET.get('msg', '')
+    key = request.GET.get('key', '')
+    decrypted_msg = decrypt_vigenere(msg, key)
+    return JsonResponse({'decrypted_msg': decrypted_msg})
