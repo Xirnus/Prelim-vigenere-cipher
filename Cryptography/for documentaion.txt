@@ -3,7 +3,7 @@ current installed frameworks
 Django 
 Tailwind
 node.js
-
+- jQuery 3.6.0
 
 MUST BE IN 2 SEPERATE TERMINALS
 to start tailwind
