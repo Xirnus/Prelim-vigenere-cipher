@@ -23,6 +23,9 @@ This HTML file is a template for a Vigenere Cipher web application. It includes 
 Dependencies:
 - jQuery 3.6.0
 - Tailwind CSS
+- Node.js (for Tailwind CSS compilation)
+- Django (for server-side encryption and decryption)
+- Django-Tailwind (for Tailwind CSS integration with Django)
 -->
 
 
@@ -126,11 +129,6 @@ Dependencies:
 
     document.getElementById('decodeButton').addEventListener('click', function() {
         setActiveButton('decodeButton');
-    });
-
-    // On page load, remove the active class from both buttons
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('decodeButton').classList.remove('active');
     });
 
     $(document).ready(function() {

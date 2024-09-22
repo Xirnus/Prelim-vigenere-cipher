@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # My website app
     'cryptography',
+
+    # Third-party apps
     'tailwind',
     'theme',
     'django_browser_reload'
@@ -60,6 +63,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Django-Tailwind middleware
     "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 

@@ -40,8 +40,8 @@ def decrypt_vigenere(msg, key):
     return "".join(decrypted_text)
 
 # Example usage
-text_to_encrypt = "Hello, World!"
-key = "KEY"
+text_to_encrypt = "James"
+key = "R"
 
 encrypted_text = encrypt_vigenere(text_to_encrypt, key)
 print(f"Encrypted Text: {encrypted_text}")

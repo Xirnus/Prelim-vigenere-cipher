@@ -20,6 +20,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('cryptography.urls')),
+    # main page
     path("index/", include('cryptography.urls')),
+    # a Django-Tailwind library which takes care of automatic page and css refreshes in the development mode
     path("__reload__/", include("django_browser_reload.urls")),
 ]
