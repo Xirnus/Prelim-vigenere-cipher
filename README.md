@@ -88,8 +88,8 @@
             Iterates over each character in the message, converting it to its ASCII code, performing decryption using the Vigenère formula, and converting it back to a character.
         Output: String (decrypted message)
 
-#### Django Views for Encryption and Decryption
-
+     Django Views for Encryption and Decryption
+     
     4. Encryption View:
         Function: encrypt(request)
         Input: Query parameters from the request:
@@ -108,4 +108,35 @@
         Process:
             Calls decrypt_vigenere() with the message and key.
             Returns a JSON response with the decrypted message.
-        Output: JSON object containing {'decrypted_msg': decrypted_message}
+        Output: JSON object containing {'decrypted_msg': decrypted_message
+
+## Security Considerations
+
+1. Vulnerability Assessment: Identification of Potential Security Risks
+
+    Input Validation:
+        Risk of injection attacks (e.g., JavaScript injection) through unsanitized user input.
+    Data Leakage:
+        Sensitive data (e.g., plaintext) could be exposed through inadequate protection or logging.
+    Denial of Service (DoS):
+        The application could be vulnerable to DoS attacks if not properly managed, especially with heavy computations.
+
+2. Mitigation Strategies: Measures to Address Identified Vulnerabilities
+
+    Input Validation:
+        Sanitize and validate all user inputs to ensure they conform to expected formats (e.g., only allow alphanumeric characters for keys).
+    Data Leakage:
+        Implement secure logging practices and avoid logging sensitive information. Use HTTPS to encrypt data in transit.
+    Denial of Service (DoS):
+        Limit request rates (rate limiting) and implement timeout mechanisms for long-running processes.
+   
+3. Testing: Procedures for Verifying Security Measures
+
+    Static Code Analysis:
+        Use tools to analyze the source code for vulnerabilities and coding standards (e.g., Bandit for Python).
+
+    Dynamic Application Security Testing (DAST):
+        Perform automated testing of the running application to identify security vulnerabilities, such as SQL injection and XSS.
+
+    Penetration Testing:
+        Conduct manual testing to simulate attacks and evaluate the security posture of the application.
