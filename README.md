@@ -2,7 +2,7 @@
 ## This web application allows users to encrypt and decrypt messages using the Vigenere Cipher. It provides a user-friendly interface with text areas for plaintext, key, and ciphertext input, as well as buttons to switch between encoding and decoding modes.
 
 ### Authors: James Edward L. Verceles & Richard Joseph Dela Cruz
-### Date: Start of Project: September 19, 2024, Last Modification: September 22, 2024
+### Date: Start of Project: September 20, 2024, Last Modification: September 22, 2024
 ### Version: v1.0.0
 ### Purpose: A method of encrypting alphabetic text by using a series of interwoven Caesar ciphers based on the letters of a keyword. Though the 'chiffre indéchiffrable' is easy to understand and implement, for three centuries it resisted all attempts to break it.
 
@@ -179,3 +179,43 @@ Activate the virtual environment:
 #### To start Django server
     python manage.py runserver
 
+
+## Error Handling
+
+Error Codes: The cipher does not receive any error as it does not process other characters apart from a string.
+Recovery Procedures: No recovery procedures are needed.
+
+## Maintenance Log
+
+Date: September 20, 2024
+Changes: Start of Project.
+Author: James Edward L. Verceles
+
+Date: September 20, 2024
+Changes: Changed Website Apperance
+- changed text box, background color, added a logo
+Author: James Edward L. Verceles
+
+Date: September 21, 2024
+Changes: Revamp the website
+- changed the bar at the top, changed the input text areas, added key text area and footer
+Author: James Edward L. Verceles
+
+Date: September 21, 2024
+Changes: Finished main functions
+- Added the way the website send data to django backend and vice versa,
+- added index.html docs
+- made the plaintext and ciphertext swap places when decode or encode button is clicked
+Author: James Edward L. Verceles
+
+Date: September 22, 2024
+Changes: Small Changes
+- small changes to author name and documentation txt
+Author: James Edward L. Verceles
+
+Date: September 22, 2024
+Changes: Finishing Touches
+- Removed unnecessary code
+- Changed docs
+- added docs to codes
+Author: James Edward L. Verceles
