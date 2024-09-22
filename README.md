@@ -10,24 +10,24 @@
 ## System Requirements 
 
 ### Hardware:
-
-CPU: 1 core (2.0+ GHz)
-RAM: 512 MB to 1 GB (preferably 1 GB)
-Storage: 5-10 GB SSD (for Django, static files, and database)
-Network: At least 100 Mbps connection for small-scale traffic
+    
+#### CPU: 1 core (2.0+ GHz)
+#### RAM: 512 MB to 1 GB (preferably 1 GB)
+#### Storage: 5-10 GB SSD (for Django, static files, and database)
+#### Network: At least 100 Mbps connection for small-scale traffic
 
 ### Software:
 
-Operating System: Ubuntu 20.04+ (or other Linux distros), Windows, or macOS
+#### Operating System: Ubuntu 20.04+ (or other Linux distros), Windows, or macOS
 
 ### Browsers:
-
-A modern browser like Chrome, Firefox, Safari, or Edge to properly render the Tailwind CSS styles and handle the JavaScript.
+    
+#### A modern browser like Chrome, Firefox, Safari, or Edge to properly render the Tailwind CSS styles and handle the JavaScript.
 
 ## Functional Description: 
 
 #### Input: Expected Data Formats and Sources
-
+    
 1. Plaintext Input:
     - Format: String
     - Source: User input via the "Plaintext" textarea.
@@ -61,80 +61,142 @@ A modern browser like Chrome, Firefox, Safari, or Edge to properly render the Ta
 #### Processing Steps
 
 1. Generate Key:
-    Function: generate_key(msg, key)
-    Input:
-        msg: String (the message to be encrypted or decrypted)
-        key: String (the encryption key)
-    Process: Extends the key to match the length of the message by repeating it.
-    Output: String (the generated key)
+    - Function: generate_key(msg, key)
+    - Input:
+        - msg: String (the message to be encrypted or decrypted)
+        - key: String (the encryption key)
+    - Process: Extends the key to match the length of the message by repeating it.
+    - Output: String (the generated key)
 
 2. Encrypt Message:
-    Function: encrypt_vigenere(msg, key)
-    Input:
-        msg: String (plaintext to encrypt)
-        key: String (encryption key)
-    Process:
-        Generates the key using generate_key().
-        Iterates over each character in the message, converting it to its ASCII code, performing encryption using the Vigenère formula, and converting it back to a character.
-    Output: String (encrypted message)
+    - Function: encrypt_vigenere(msg, key)
+    - Input:
+        - msg: String (plaintext to encrypt)
+        - key: String (encryption key)
+    - Process:
+        - Generates the key using generate_key().
+        - Iterates over each character in the message, converting it to its ASCII code, performing encryption using the Vigenère formula, and converting it back to a character.
+    - Output: String (encrypted message)
 
 3. Decrypt Message:
-    Function: decrypt_vigenere(msg, key)
-    Input:
-        msg: String (ciphertext to decrypt)
-        key: String (encryption key)
-    Process:
-        Generates the key using generate_key().
-        Iterates over each character in the message, converting it to its ASCII code, performing decryption using the Vigenère formula, and converting it back to a character.
-    Output: String (decrypted message)
+    - Function: decrypt_vigenere(msg, key)
+    - Input:
+        - msg: String (ciphertext to decrypt)
+        - key: String (encryption key)
+    - Process:
+        - Generates the key using generate_key().
+        - Iterates over each character in the message, converting it to its ASCII code, performing decryption using the Vigenère formula, and converting it back to a character.
+    - Output: String (decrypted message)
 
- Django Views for Encryption and Decryption
+#### Django Views for Encryption and Decryption
  
 4. Encryption View:
-    Function: encrypt(request)
-    Input: Query parameters from the request:
-        msg: The plaintext to encrypt (String)
-        key: The encryption key (String)
-    Process:
-        Calls encrypt_vigenere() with the message and key.
-        Returns a JSON response with the encrypted message.
-    Output: JSON object containing {'encrypted_msg': encrypted_message}
+    - Function: encrypt(request)
+    - Input: Query parameters from the request:
+        - msg: The plaintext to encrypt (String)
+        - key: The encryption key (String)
+    - Process:
+        - Calls encrypt_vigenere() with the message and key.
+        - Returns a JSON response with the encrypted message.
+    - Output: JSON object containing {'encrypted_msg': encrypted_message}
 
 5. Decryption View:
-    Function: decrypt(request)
-    Input: Query parameters from the request:
-        msg: The ciphertext to decrypt (String)
-        key: The encryption key (String)
-    Process:
-        Calls decrypt_vigenere() with the message and key.
-        Returns a JSON response with the decrypted message.
-    Output: JSON object containing {'decrypted_msg': decrypted_message
+    - Function: decrypt(request)
+    - Input: Query parameters from the request:
+        - msg: The ciphertext to decrypt (String)
+        - key: The encryption key (String)
+    - Process:
+        - Calls decrypt_vigenere() with the message and key.
+        - Returns a JSON response with the decrypted message.
+    - Output: JSON object containing {'decrypted_msg': decrypted_message
 
 ## Security Considerations
 
-1. Vulnerability Assessment: Identification of Potential Security Risks   
+    1. Vulnerability Assessment: Identification of Potential Security Risks   
+    
+        Input Validation:   
+            Risk of injection attacks (e.g., JavaScript injection) through unsanitized user input.   
+        Data Leakage:   
+            Sensitive data (e.g., plaintext) could be exposed through inadequate protection or logging.   
+        Denial of Service (DoS):   
+            The application could be vulnerable to DoS attacks if not properly managed, especially with heavy computations.   
+    
+    2. Mitigation Strategies: Measures to Address Identified Vulnerabilities   
+    
+        Input Validation:   
+            Sanitize and validate all user inputs to ensure they conform to expected formats (e.g., only allow alphanumeric characters for keys).   
+        Data Leakage:   
+            Implement secure logging practices and avoid logging sensitive information. Use HTTPS to encrypt data in transit.   
+        Denial of Service (DoS):   
+            Limit request rates (rate limiting) and implement timeout mechanisms for long-running processes.   
+       
+    3. Testing: Procedures for Verifying Security Measures   
+     
+        Static Code Analysis:   
+            Use tools to analyze the source code for vulnerabilities and coding standards (e.g., Bandit for Python).    
+        Dynamic Application Security Testing (DAST):    
+            Perform automated testing of the running application to identify security vulnerabilities, such as SQL injection and XSS.   
+        Penetration Testing:   
+            Conduct manual testing to simulate attacks and evaluate the security posture of the application.    
 
-    Input Validation:   
-        Risk of injection attacks (e.g., JavaScript injection) through unsanitized user input.   
-    Data Leakage:   
-        Sensitive data (e.g., plaintext) could be exposed through inadequate protection or logging.   
-    Denial of Service (DoS):   
-        The application could be vulnerable to DoS attacks if not properly managed, especially with heavy computations.   
+## Usage Instructions
 
-2. Mitigation Strategies: Measures to Address Identified Vulnerabilities   
+### Installation: Steps to Set Up the Program Environment
 
-    Input Validation:   
-        Sanitize and validate all user inputs to ensure they conform to expected formats (e.g., only allow alphanumeric characters for keys).   
-    Data Leakage:   
-        Implement secure logging practices and avoid logging sensitive information. Use HTTPS to encrypt data in transit.   
-    Denial of Service (DoS):   
-        Limit request rates (rate limiting) and implement timeout mechanisms for long-running processes.   
-   
-3. Testing: Procedures for Verifying Security Measures   
- 
-    Static Code Analysis:   
-        Use tools to analyze the source code for vulnerabilities and coding standards (e.g., Bandit for Python).    
-    Dynamic Application Security Testing (DAST):    
-        Perform automated testing of the running application to identify security vulnerabilities, such as SQL injection and XSS.   
-    Penetration Testing:   
-        Conduct manual testing to simulate attacks and evaluate the security posture of the application.    
+#### Prerequisites:
+- Ensure you have Python (3.7 or higher) installed on your system.
+- Install pip (Python package installer), which usually comes with Python.
+
+#### Create a Virtual Environment:
+- Open a terminal and navigate to your project directory.
+- Create a virtual environment to isolate dependencies:
+    
+        python -m venv (virtual environment name)
+
+Activate the virtual environment:
+
+    On Windows:
+
+    bash
+
+venv\Scripts\activate
+
+On macOS/Linux:
+
+bash
+
+        source venv/bin/activate
+
+Install Django and Dependencies:
+
+    Install Django and other required packages:
+
+    bash
+
+    pip install django
+    pip install djangorestframework  # If using REST framework
+
+Install Tailwind CSS (if applicable):
+
+    Install Node.js and npm (Node Package Manager).
+    Navigate to your project directory and run:
+
+    bash
+
+    npm install -D tailwindcss
+    npx tailwindcss init
+
+Set Up Django Project:
+
+    Create a new Django project:
+
+    bash
+
+django-admin startproject vigenere_cipher
+cd vigenere_cipher
+
+Create a new app for the cipher logic:
+
+bash
+
+python manage.py startapp cipher
