@@ -11,10 +11,10 @@
 
 ### Hardware:
 
-    CPU: 1 core (2.0+ GHz)
-    RAM: 512 MB to 1 GB (preferably 1 GB)
-    Storage: 5-10 GB SSD (for Django, static files, and database)
-    Network: At least 100 Mbps connection for small-scale traffic
+CPU: 1 core (2.0+ GHz)
+RAM: 512 MB to 1 GB (preferably 1 GB)
+Storage: 5-10 GB SSD (for Django, static files, and database)
+Network: At least 100 Mbps connection for small-scale traffic
 
 ### Software:
 
