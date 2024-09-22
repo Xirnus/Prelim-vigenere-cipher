@@ -193,29 +193,29 @@ Author: James Edward L. Verceles
 
 Date: September 20, 2024      
 Changes: Changed Website Apperance      
-- changed text box, background color, added a logo
+- changed text box, background color, added a logo      
 Author: James Edward L. Verceles     
 
 Date: September 21, 2024     
 Changes: Revamp the website     
-- changed the bar at the top, changed the input text areas, added key text area and footer
+- changed the bar at the top, changed the input text areas, added key text area and footer      
 Author: James Edward L. Verceles    
 
 Date: September 21, 2024    
 Changes: Finished main functions     
 - Added the way the website send data to django backend and vice versa,
 - added index.html docs
-- made the plaintext and ciphertext swap places when decode or encode button is clicked
+- made the plaintext and ciphertext swap places when decode or encode button is clicked       
 Author: James Edward L. Verceles     
  
 Date: September 22, 2024     
 Changes: Small Changes     
-- small changes to author name and documentation txt
+- small changes to author name and documentation txt       
 Author: James Edward L. Verceles    
 
 Date: September 22, 2024    
 Changes: Finishing Touches    
 - Removed unnecessary code
 - Changed docs
-- added docs to codes
+- added docs to codes        
 Author: James Edward L. Verceles    
