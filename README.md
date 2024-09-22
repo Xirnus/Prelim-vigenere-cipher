@@ -19,11 +19,6 @@
 ### Software:
 
     Operating System: Ubuntu 20.04+ (or other Linux distros), Windows, or macOS
-    Python: Version 3.7 or higher
-    Django: Version 3.2 or higher
-    Database: SQLite (for small projects) or PostgreSQL/MySQL (for larger projects)
-    Node.js: For compiling Tailwind CSS (optional but recommended)
-    Web Server: Nginx or Apache (for production)
 
 ### Browsers:
 
