@@ -11,10 +11,10 @@
 
 ### Hardware:
 
-CPU: 1 core (2.0+ GHz)
-RAM: 512 MB to 1 GB (preferably 1 GB)
-Storage: 5-10 GB SSD (for Django, static files, and database)
-Network: At least 100 Mbps connection for small-scale traffic
+    CPU: 1 core (2.0+ GHz)
+    RAM: 512 MB to 1 GB (preferably 1 GB)
+    Storage: 5-10 GB SSD (for Django, static files, and database)
+    Network: At least 100 Mbps connection for small-scale traffic
 
 ### Software:
 
@@ -33,17 +33,17 @@ Network: At least 100 Mbps connection for small-scale traffic
 
 #### Input: Expected Data Formats and Sources
 
-   1. Plaintext Input:
-        - Format: String
-        - Source: User input via the "Plaintext" textarea.
-
-   2. Key Input:
-        - Format: String (alphanumeric characters)
-        - Source: User input via the "Key" textarea.
-
-   3. Ciphertext Input (for decoding):
-        - Format: String
-        - Source: User input via the "Ciphertext" textarea.
+       1. Plaintext Input:
+            - Format: String
+            - Source: User input via the "Plaintext" textarea.
+    
+       2. Key Input:
+            - Format: String (alphanumeric characters)
+            - Source: User input via the "Key" textarea.
+    
+       3. Ciphertext Input (for decoding):
+            - Format: String
+            - Source: User input via the "Ciphertext" textarea.
 
 #### Output: Generated Data, Formats, and Destinations
 
