@@ -153,48 +153,29 @@
 
 Activate the virtual environment:
 
-    On Windows:
+#### On Windows:
 
-    bash
+    venv\Scripts\activate
 
-venv\Scripts\activate
+#### On macOS/Linux:
 
-On macOS/Linux:
+    source venv/bin/activate
 
-bash
-
-        source venv/bin/activate
-
-Install Django and Dependencies:
-
-    Install Django and other required packages:
-
-    bash
+#### Install Django and Dependencies:
 
     pip install django
-    pip install djangorestframework  # If using REST framework
+    python -m pip install django-tailwind
+    Node js https://nodejs.org/en
 
-Install Tailwind CSS (if applicable):
+#### Starting the webserver
 
-    Install Node.js and npm (Node Package Manager).
-    Navigate to your project directory and run:
+    cd mywebsite
 
-    bash
+#### MUST BE IN 2 SEPERATE TERMINALS
 
-    npm install -D tailwindcss
-    npx tailwindcss init
+#### To start tailwind
+    python manage.py tailwind start
 
-Set Up Django Project:
+#### To start Django server
+    python manage.py runserver
 
-    Create a new Django project:
-
-    bash
-
-django-admin startproject vigenere_cipher
-cd vigenere_cipher
-
-Create a new app for the cipher logic:
-
-bash
-
-python manage.py startapp cipher
