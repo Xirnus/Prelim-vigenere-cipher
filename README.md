@@ -112,32 +112,30 @@
 
 ## Security Considerations
 
-    1. Vulnerability Assessment: Identification of Potential Security Risks   
-    
-        Input Validation:   
-            Risk of injection attacks (e.g., JavaScript injection) through unsanitized user input.   
-        Data Leakage:   
-            Sensitive data (e.g., plaintext) could be exposed through inadequate protection or logging.   
-        Denial of Service (DoS):   
-            The application could be vulnerable to DoS attacks if not properly managed, especially with heavy computations.   
-    
-    2. Mitigation Strategies: Measures to Address Identified Vulnerabilities   
-    
-        Input Validation:   
-            Sanitize and validate all user inputs to ensure they conform to expected formats (e.g., only allow alphanumeric characters for keys).   
-        Data Leakage:   
-            Implement secure logging practices and avoid logging sensitive information. Use HTTPS to encrypt data in transit.   
-        Denial of Service (DoS):   
-            Limit request rates (rate limiting) and implement timeout mechanisms for long-running processes.   
-       
-    3. Testing: Procedures for Verifying Security Measures   
-     
-        Static Code Analysis:   
-            Use tools to analyze the source code for vulnerabilities and coding standards (e.g., Bandit for Python).    
-        Dynamic Application Security Testing (DAST):    
-            Perform automated testing of the running application to identify security vulnerabilities, such as SQL injection and XSS.   
-        Penetration Testing:   
-            Conduct manual testing to simulate attacks and evaluate the security posture of the application.    
+1. Vulnerability Assessment: Identification of Potential Security Risks   
+    - Input Validation:   
+        - Risk of injection attacks (e.g., JavaScript injection) through unsanitized user input.   
+    - Data Leakage:   
+        - Sensitive data (e.g., plaintext) could be exposed through inadequate protection or logging.   
+    - Denial of Service (DoS):   
+        - The application could be vulnerable to DoS attacks if not properly managed, especially with heavy computations.   
+
+2. Mitigation Strategies: Measures to Address Identified Vulnerabilities
+    - Input Validation:   
+        - Sanitize and validate all user inputs to ensure they conform to expected formats (e.g., only allow alphanumeric characters for keys).   
+    - Data Leakage:   
+        - Implement secure logging practices and avoid logging sensitive information. Use HTTPS to encrypt data in transit.   
+    - Denial of Service (DoS):   
+        - Limit request rates (rate limiting) and implement timeout mechanisms for long-running processes.   
+   
+4. Testing: Procedures for Verifying Security Measures   
+ 
+    - Static Code Analysis:   
+        - Use tools to analyze the source code for vulnerabilities and coding standards (e.g., Bandit for Python).    
+    - Dynamic Application Security Testing (DAST):    
+        - Perform automated testing of the running application to identify security vulnerabilities, such as SQL injection and XSS.   
+    - Penetration Testing:   
+        - Conduct manual testing to simulate attacks and evaluate the security posture of the application.    
 
 ## Usage Instructions
 
