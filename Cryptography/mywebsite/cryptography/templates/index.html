@@ -89,7 +89,7 @@ Dependencies:
         </div>
     </div>
 
-    <footer class="bg-zinc-800 py-4 mt-72">
+    <footer class="bg-zinc-800 py-4 mt-80">
         <div class="container mx-auto text-center text-white">
             <p>&copy; Developed by: James Edward L. Verceles & Richard Joseph Dela Cruz 2024</p>
         </div>
@@ -98,6 +98,15 @@ Dependencies:
 </html>
 
 <script>
+    // Clear text area of containers
+    function clearTextAreas(clearCiphertext = true) {
+        document.getElementById('plaintext').value = '';
+        document.getElementById('key').value = '';
+        if (clearCiphertext) {
+            document.getElementById('ciphertext').value = '';
+        }
+    }
+
     // Function to set the active button and swap textareas if needed
     function setActiveButton(buttonId) {
         document.getElementById('encodeButton').classList.remove('active');
@@ -110,12 +119,15 @@ Dependencies:
         const keytextContainer = document.getElementById('keytextContainer');
 
         if (buttonId === 'decodeButton') {
-            textareaContainer.innerHTML = ''; // Clear the container
+            clearTextAreas(false); 
+            document.getElementById('ciphertext').value = ''; 
+            textareaContainer.innerHTML = ''; 
             textareaContainer.appendChild(ciphertextContainer);
             textareaContainer.appendChild(keytextContainer);
             textareaContainer.appendChild(plaintextContainer);
         } else {
-            textareaContainer.innerHTML = ''; // Clear the container
+            clearTextAreas();
+            textareaContainer.innerHTML = ''; 
             textareaContainer.appendChild(plaintextContainer);
             textareaContainer.appendChild(keytextContainer);
             textareaContainer.appendChild(ciphertextContainer);
@@ -134,27 +146,47 @@ Dependencies:
     $(document).ready(function() {
         console.log('Document is ready');
 
+        function removeSpaces(str) {
+            let positions = [];
+            let cleanedStr = str.split('').filter((char, index) => {
+                if (char === ' ') {
+                    positions.push(index);
+                    return false;
+                }
+                return true;
+            }).join('');
+            return { cleanedStr, positions };
+        }
+
+        function reinsertSpaces(str, positions) {
+            let arr = str.split('');
+            positions.forEach(pos => {
+                arr.splice(pos, 0, ' ');
+            });
+            return arr.join('');
+        }
+
         function encrypt() {
             var plaintext = $('#plaintext').val();
             var key = $('#key').val();
             console.log('Encrypt function called with plaintext:', plaintext, 'and key:', key);
             if (plaintext && key) {
+                let { cleanedStr: cleanedPlaintext, positions } = removeSpaces(plaintext);
                 $.ajax({
                     url: '/encrypt/',
                     data: {
-                        'msg': plaintext,
+                        'msg': cleanedPlaintext,
                         'key': key
                     },
                     success: function(data) {
                         console.log('Encryption successful:', data);
-                        $('#ciphertext').val(data.encrypted_msg);
+                        let encryptedMsg = reinsertSpaces(data.encrypted_msg, positions);
+                        $('#ciphertext').val(encryptedMsg);
                     },
                     error: function(xhr, status, error) {
                         console.error('Encryption error:', status, error);
                     }
                 });
-            } else {
-                $('#ciphertext').val('');
             }
         }
 
@@ -163,39 +195,35 @@ Dependencies:
             var key = $('#key').val();
             console.log('Decrypt function called with ciphertext:', ciphertext, 'and key:', key);
             if (ciphertext && key) {
+                let { cleanedStr: cleanedCiphertext, positions } = removeSpaces(ciphertext);
                 $.ajax({
                     url: '/decrypt/',
                     data: {
-                        'msg': ciphertext,
+                        'msg': cleanedCiphertext,
                         'key': key
                     },
                     success: function(data) {
                         console.log('Decryption successful:', data);
-                        $('#plaintext').val(data.decrypted_msg);
+                        let decryptedMsg = reinsertSpaces(data.decrypted_msg, positions);
+                        $('#plaintext').val(decryptedMsg);
                     },
                     error: function(xhr, status, error) {
                         console.error('Decryption error:', status, error);
                     }
                 });
-            } else {
-                $('#plaintext').val('');
             }
         }
 
         $('#plaintext, #key').on('input', function() {
             console.log('Input event triggered on plaintext or key');
-            if ($('#plaintext').val() === '' || $('#key').val() === '') {
-                $('#ciphertext').val('');
-            } else {
+            if ($('#plaintext').val() && $('#key').val() && $('#encodeButton').hasClass('active')) {
                 encrypt();
             }
         });
 
-        $('#ciphertext').on('input', function() {
-            console.log('Input event triggered on ciphertext');
-            if ($('#ciphertext').val() === '' || $('#key').val() === '') {
-                $('#plaintext').val('');
-            } else {
+        $('#ciphertext, #key').on('input', function() {
+            console.log('Input event triggered on ciphertext or key');
+            if ($('#ciphertext').val() && $('#key').val() && $('#decodeButton').hasClass('active')) {
                 decrypt();
             }
         });
@@ -203,12 +231,10 @@ Dependencies:
         $('#key').on('input', function() {
             if ($('#plaintext').val() === '' && $('#ciphertext').val() === '') {
                 console.log('Key input event triggered with no plaintext or ciphertext present');
-                $('#plaintext').val('');
-                $('#ciphertext').val('');
-            } else if ($('#plaintext').val()) {
+            } else if ($('#plaintext').val() && $('#encodeButton').hasClass('active')) {
                 console.log('Key input event triggered with plaintext present');
                 encrypt();
-            } else if ($('#ciphertext').val()) {
+            } else if ($('#ciphertext').val() && $('#decodeButton').hasClass('active')) {
                 console.log('Key input event triggered with ciphertext present');
                 decrypt();
             }
